@@ -3,7 +3,7 @@ tasks:
     shell: python -m robot --report NONE --outputdir output --logtitle "Task log" tasks.robot
   Batch-1:
   # 'shell': You have to quote items in the command with spaces using "
-    shell: python -m robot --report NONE --outputdir output/o1 --logtitle "Task log" Task1.robot
+    shell: python -m robot --report NONE --outputdir output --logtitle "Task log" Task1.robot
   Run Example task:
     robotTaskName: Example task
 
