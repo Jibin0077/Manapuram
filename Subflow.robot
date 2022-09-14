@@ -63,9 +63,9 @@ Portal Login
     ${UserName}=  Set Variable    ${details}[${TestCase_Id}][username]
     ${Password}=  Set Variable    ${details}[${TestCase_Id}][password]
     # ${Delay}=     Set Variable    ${details}[TC_03][Scheduler]
-    Wait Until Keyword Succeeds    3x   5     Wait Until Element Is Visible    //*[@id="username"]
+    Wait Until Keyword Succeeds    8x   7     Wait Until Element Is Visible    //*[@id="username"]
     Input Text    //*[@id="username"]        ${UserName}
-    Wait Until Keyword Succeeds    3x   5     Wait Until Element Is Visible    //*[@id="password"]
+    Wait Until Keyword Succeeds    8x   7     Wait Until Element Is Visible    //*[@id="password"]
     Input Password    //*[@id="password"]    ${Password}
     Click Element If Visible    //*[@id="txt_login"]
     Sleep    2s
