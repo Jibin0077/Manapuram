@@ -1,3 +1,3 @@
 @ECHO OFF
-CALL cd C:\Users\Q0041\Documents\Robots\Manapuram
+CALL cd /D %1
 rcc run --task Batch-1
