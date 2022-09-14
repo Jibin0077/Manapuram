@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20220914 11:18:09.994" rpa="true" schemaversion="3">
+<suite id="s1" name="Task1" source="c:\Users\Q0041\Documents\Robots\Manapuram\Task1.robot">
+<test id="s1-t1" name="Run Task" line="8">
+<kw name="MAIN FLOW" library="tasks">
+<kw name="Current Diectory" library="Data">
+<var>${File}</var>
+<msg timestamp="20220914 11:18:17.940" level="INFO">${File} = C:\Users\Q0041\Documents\Robots\Manapuram\input\Automation Test Case.xlsx</msg>
+<status status="PASS" starttime="20220914 11:18:17.939" endtime="20220914 11:18:17.947"/>
+</kw>
+<kw name="Data Collection" library="Subflow">
+<kw name="Create Dict" library="Filtering">
+<var>${data}</var>
+<kw name="Current Diectory" library="Data">
+<var>${File}</var>
+<msg timestamp="20220914 11:18:17.954" level="INFO">${File} = C:\Users\Q0041\Documents\Robots\Manapuram\input\Automation Test Case.xlsx</msg>
+<status status="PASS" starttime="20220914 11:18:17.952" endtime="20220914 11:18:17.954"/>
+</kw>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${File}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20220914 11:18:18.333" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x000001F2E65314F0&gt;</msg>
+<status status="PASS" starttime="20220914 11:18:17.955" endtime="20220914 11:18:18.333"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${data}</var>
+<arg>Controller</arg>
+<arg>header=${True}</arg>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<msg timestamp="20220914 11:18:18.336" level="INFO">Created table: Table(columns=['Date', 'TEST CASE ID', 'TEST CASE NAME', 'Execute_Flag', 'Status', 'Scheduler'], rows=8)</msg>
+<msg timestamp="20220914 11:18:18.336" level="INFO">${data} = Table(columns=['Date', 'TEST CASE ID', 'TEST CASE NAME', 'Execute_Flag', 'Status', 'Scheduler'], rows=8)</msg>
+<status status="PASS" starttime="20220914 11:18:18.333" endtime="20220914 11:18:18.336"/>
+</kw>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20220914 11:18:18.336" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x000001F2E65314F0&gt;</msg>
+<status status="PASS" starttime="20220914 11:18:18.336" endtime="20220914 11:18:18.336"/>
+</kw>
+<kw name="Filter Table By Column" library="RPA.Tables">
+<arg>${data}</arg>
+<arg>Execute_Flag</arg>
+<arg>==</arg>
+<arg>YES</arg>
+<doc>Remove all rows where column values don't match the
+given condition.</doc>
+<msg timestamp="20220914 11:18:18.344" level="INFO">Filtered 0 rows</msg>
+<status status="PASS" starttime="20220914 11:18:18.336" endtime="20220914 11:18:18.345"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{alldata}</var>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.345" level="INFO">&amp;{alldata} = { }</msg>
+<status status="PASS" starttime="20220914 11:18:18.345" endtime="20220914 11:18:18.345"/>
+</kw>
+<for flavor="IN">
+<var>${row}</var>
+<value>@{data}</value>
+<iter>
+<var name="${row}">{'Date': datetime.datetime(2022, 9, 6, 0, 0), 'TEST CASE ID': 'TC_01', 'TEST CASE NAME': 'Portal Launching', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': 2}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.345" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Portal Launching | Execute_Flag=YES | Scheduler=2 }</msg>
+<status status="PASS" starttime="20220914 11:18:18.345" endtime="20220914 11:18:18.345"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.345" endtime="20220914 11:18:18.355"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.345" endtime="20220914 11:18:18.355"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_02', 'TEST CASE NAME': 'Quick Pay in Portal', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': 2}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.360" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Quick Pay in Portal | Execute_Flag=YES | Scheduler=2 }</msg>
+<status status="PASS" starttime="20220914 11:18:18.357" endtime="20220914 11:18:18.360"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.360" endtime="20220914 11:18:18.360"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.356" endtime="20220914 11:18:18.360"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_03', 'TEST CASE NAME': 'Portal Login', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': None}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.360" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Portal Login | Execute_Flag=YES | Scheduler=None }</msg>
+<status status="PASS" starttime="20220914 11:18:18.360" endtime="20220914 11:18:18.360"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.360" endtime="20220914 11:18:18.379"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.360" endtime="20220914 11:18:18.379"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_04', 'TEST CASE NAME': 'Portal Login with Email Notification', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': 2}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.383" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Portal Login with Email Notification | Execute_Flag=YES | Scheduler=2 }</msg>
+<status status="PASS" starttime="20220914 11:18:18.382" endtime="20220914 11:18:18.383"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.383" endtime="20220914 11:18:18.386"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.380" endtime="20220914 11:18:18.389"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_05', 'TEST CASE NAME': 'Portal login with menus validation', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': None}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.389" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Portal login with menus validation | Execute_Flag=YES | Scheduler=None }</msg>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_06', 'TEST CASE NAME': 'Portal Login with the user verification', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': 2}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.389" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Portal Login with the user verification | Execute_Flag=YES | Scheduler=2 }</msg>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_07', 'TEST CASE NAME': 'Portal sign out', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': 2}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.389" level="INFO">&amp;{valuedata} = { TEST CASE NAME=Portal sign out | Execute_Flag=YES | Scheduler=2 }</msg>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.389"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.408"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.389" endtime="20220914 11:18:18.408"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TEST CASE ID': 'TC_08', 'TEST CASE NAME': 'PayTM Login', 'Execute_Flag': 'YES', 'Status': 'pass', 'Scheduler': 2}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{valuedata}</var>
+<arg>TEST CASE NAME</arg>
+<arg>${row}[TEST CASE NAME]</arg>
+<arg>Execute_Flag</arg>
+<arg>${row}[Execute_Flag]</arg>
+<arg>Scheduler</arg>
+<arg>${row}[Scheduler]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220914 11:18:18.413" level="INFO">&amp;{valuedata} = { TEST CASE NAME=PayTM Login | Execute_Flag=YES | Scheduler=2 }</msg>
+<status status="PASS" starttime="20220914 11:18:18.410" endtime="20220914 11:18:18.413"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}</arg>
+<arg>${row['TEST CASE ID']}</arg>
+<arg>${valuedata}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.414" endtime="20220914 11:18:18.416"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.409" endtime="20220914 11:18:18.416"/>
+</iter>
+<status status="PASS" starttime="20220914 11:18:18.345" endtime="20220914 11:18:18.417"/>
+</for>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${File}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20220914 11:18:18.625" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x000001F2E67AA550&gt;</msg>
+<status status="PASS" starttime="20220914 11:18:18.417" endtime="20220914 11:18:18.625"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${data2}</var>
+<arg>Sheet3</arg>
+<arg>header=${True}</arg>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<msg timestamp="20220914 11:18:18.625" level="INFO">Created table: Table(columns=['Date', 'TestCase_Id', 'TestName', 'PageLoading_Text', 'UserName', 'Password'], rows=8)</msg>
+<msg timestamp="20220914 11:18:18.625" level="INFO">${data2} = Table(columns=['Date', 'TestCase_Id', 'TestName', 'PageLoading_Text', 'UserName', 'Password'], rows=8)</msg>
+<status status="PASS" starttime="20220914 11:18:18.625" endtime="20220914 11:18:18.625"/>
+</kw>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20220914 11:18:18.625" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x000001F2E67AA550&gt;</msg>
+<status status="PASS" starttime="20220914 11:18:18.625" endtime="20220914 11:18:18.625"/>
+</kw>
+<kw name="Filter Table By Column" library="RPA.Tables">
+<arg>${data2}</arg>
+<arg>TestCase_Id</arg>
+<arg>in</arg>
+<arg>${alldata.keys()}</arg>
+<doc>Remove all rows where column values don't match the
+given condition.</doc>
+<msg timestamp="20220914 11:18:18.625" level="INFO">Filtered 0 rows</msg>
+<status status="PASS" starttime="20220914 11:18:18.625" endtime="20220914 11:18:18.625"/>
+</kw>
+<for flavor="IN">
+<var>${row}</var>
+<value>@{data2}</value>
+<iter>
+<var name="${row}">{'Date': datetime.datetime(2022, 9, 6, 0, 0), 'TestCase_Id': 'TC_01', 'TestName': 'Portal Launching', 'PageLoading_Text': 'Welcome To Manappuram Finance Limited Customer eService Portal\n', 'UserName'...</var>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}[${row['TestCase_Id']}]</arg>
+<arg>username</arg>
+<arg>${row}[UserName]</arg>
+<arg>password</arg>
+<arg>${row}[Password]</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.625" endtime="20220914 11:18:18.625"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.625" endtime="20220914 11:18:18.625"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TestCase_Id': 'TC_02', 'TestName': 'Quick Pay in Portal', 'PageLoading_Text': None, 'UserName': None, 'Password': None}</var>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}[${row['TestCase_Id']}]</arg>
+<arg>username</arg>
+<arg>${row}[UserName]</arg>
+<arg>password</arg>
+<arg>${row}[Password]</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20220914 11:18:18.640" endtime="20220914 11:18:18.644"/>
+</kw>
+<status status="PASS" starttime="20220914 11:18:18.625" endtime="20220914 11:18:18.644"/>
+</iter>
+<iter>
+<var name="${row}">{'Date': None, 'TestCase_Id': 'TC_03', 'TestName': 'Portal Login', 'PageLoading_Text': None, 'UserName': 9496292627, 'Password': 'j9496292627'}</var>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${alldata}[${row['TestCase_Id']}]</arg>
+<arg>username</arg>
+<arg>${row}[UserName]</arg>
+<arg>
